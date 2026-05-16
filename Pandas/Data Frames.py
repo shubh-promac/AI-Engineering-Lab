@@ -15,8 +15,20 @@ print(df['Name'])
 print(df.loc['Brawler2'])
 # Accessing a specific value
 print(df.loc['Brawler3', 'Rarity'])
-df['Job'] = ['Circus Performer', 'Brawl Police', None]  # Adding a new column to the DataFrame
+df['Job'] = ['Circus Performer', 'Brawl Police', 'Superhero']  # Adding a new column to the DataFrame
 print(df)
 
 # print(df.describe())  # Get summary statistics of the DataFrame
 # print(df.info())  # Get information about the DataFrame, including data types and non-null
+
+# Adding 2 dataframes together
+brawlers2 = {'Name': ['Shelly', 'Nita', 'Barley'],
+          'Rarity': ['Starter', 'Rare', 'Rare'], 
+          'Job': ['Brawl Police', None, 'Waiter']}
+
+new_row = pd.DataFrame(brawlers2, index=['Brawler4', 'Brawler5', 'Brawler6'])
+# Concatenating the original DataFrame with the new DataFrame
+df = pd.concat([df, new_row], ignore_index=False, sort=True) # we can use ignore_index=True to reset the index of the new dataframe
+# the sort parameter sorts the indexes
+
+print(df)
