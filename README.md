@@ -1,5 +1,6 @@
 # 🚀 AI Engineering Lab
-Welcome to my central hub for learning AI, Data Science, and Machine Learning. This repository tracks my progress from data fundamentals to building intelligent systems.
+This repository is a hands-on guide for learning AI, Data Science, and Machine Learning from basics to advanced topics
+To get started, clone the repo and explore the folders by topic; contributions and suggestions are welcome via pull requests or issues.
 
 ## 🗺️ Learning Roadmap
 - [x] **Phase 1: Data Foundations** (NumPy, Statistics, Math)
@@ -21,7 +22,7 @@ Welcome to my central hub for learning AI, Data Science, and Machine Learning. T
 * **Matplotlib Practice:** Collection of scripts for Histograms, Pie Charts, and Scatter Plots.
 * **Seaborn:** Statistical data visualization notes.
 
-### 🐼 03. Pandas (Upcoming)
+### 🐼 03. Pandas
 *Future home for dataframes and real-world CSV analysis.*
 
 ---
