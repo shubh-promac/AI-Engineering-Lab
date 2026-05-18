@@ -26,7 +26,7 @@ print(df.loc[df.Name.isin(['Stu', 'Colt'])]) # type: ignore
 print(df.loc[df['Name'].isin(['Stu', 'Colt'])])
 
 # Prefer this (only ignores the missing attribute error):
-print(df.loc[df.Name.isin(['Stu'])])  # type: ignore[attr-defined]
+print(df.loc[df.Name.isin(['Stu', 'Colt'])])  # type: ignore[attr-defined]
 
 # print(df.describe())  # Get summary statistics of the DataFrame
 # print(df.info())  # Get information about the DataFrame, including data types and non-null
@@ -42,3 +42,23 @@ df = pd.concat([df, new_row], ignore_index=False, sort=True) # we can use ignore
 # the sort parameter sorts the indexes
 
 print(df)
+
+print(df['Job'].isnull())  # Check for null values in the DataFrame
+print(df['Job'].notnull())  # Check for non-null values in the 'Job' column
+
+# Add a 'critic' column to the DataFrame (was 'reviews' which is undefined)
+df['Job'] = 'Unemployed' # making them all jobless
+# this will change all the values in the 'Job' column to 'Unemployed', use a list to change specific values
+print(df)
+
+df['Ability'] = ['Speed Boost', 'Silver Bullet', 'Mecha Punch', 'Power Shot', 'Bear Fur', 'Spillage'] # this will create a whole new column
+print(df)
+
+i = ['Brawler1', 'Brawler2', 'Brawler3', 'Brawler4']
+few_brawlers = df.loc[i]
+print(few_brawlers)
+
+cols = ['Name', 'Rarity', 'Job', 'Ability']
+indices = ['Brawler1', 'Brawler2', 'Brawler3', 'Brawler4']
+selected_brawlers = df.loc[indices, cols]
+print(selected_brawlers)
