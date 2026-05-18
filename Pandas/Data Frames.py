@@ -7,11 +7,12 @@ brawlers = {'Name': ['Stu', 'Colt', 'Meg'],
 
 # Create a DataFrame from the dictionary
 df = pd.DataFrame(brawlers, columns=['Name', 'Rarity'], index=['Brawler1', 'Brawler2', 'Brawler3'])
-
 print(df)
 # Accessing a column
 print(df['Name'])
+print(df.Name)
 # Accessing a row
+# print(df['Name'][0]) in future this will be deprecated, so we should use .loc or .iloc instead
 print(df.loc['Brawler2'])
 # Accessing a specific value
 print(df.loc['Brawler3', 'Rarity'])
