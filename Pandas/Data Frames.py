@@ -7,6 +7,7 @@ brawlers = {'Name': ['Stu', 'Colt', 'Meg'],
 
 # Create a DataFrame from the dictionary
 df = pd.DataFrame(brawlers, columns=['Name', 'Rarity'], index=['Brawler1', 'Brawler2', 'Brawler3'])
+
 print(df)
 # Accessing a column
 print(df['Name'])
@@ -18,6 +19,14 @@ print(df.loc['Brawler2'])
 print(df.loc['Brawler3', 'Rarity'])
 df['Job'] = ['Circus Performer', 'Brawl Police', 'Superhero']  # Adding a new column to the DataFrame
 print(df)
+
+print(df.loc[df.Name.isin(['Stu', 'Colt'])]) # type: ignore
+
+# This style is type-safe and usually eliminates the need for '# type: ignore'
+print(df.loc[df['Name'].isin(['Stu', 'Colt'])])
+
+# Prefer this (only ignores the missing attribute error):
+print(df.loc[df.Name.isin(['Stu'])])  # type: ignore[attr-defined]
 
 # print(df.describe())  # Get summary statistics of the DataFrame
 # print(df.info())  # Get information about the DataFrame, including data types and non-null
