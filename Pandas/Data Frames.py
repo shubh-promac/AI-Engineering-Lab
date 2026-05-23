@@ -28,8 +28,9 @@ print(df.loc[df['Name'].isin(['Stu', 'Colt'])])
 # Prefer this (only ignores the missing attribute error):
 print(df.loc[df.Name.isin(['Stu', 'Colt'])])  # type: ignore[attr-defined]
 
-# print(df.describe())  # Quick Statistical Summary # Get summary statistics of the DataFrame
-# print(df.info())  # Get information about the DataFrame, including data types and non-null
+# Summary functions and Maps
+print(df.describe())  # Quick Statistical Summary # Get summary statistics of the DataFrame
+print(df.info())  # Get information about the DataFrame, including data types and non-null
 
 # Adding 2 dataframes together
 brawlers2 = {'Name': ['Shelly', 'Nita', 'Barley'],
@@ -62,3 +63,6 @@ cols = ['Name', 'Rarity', 'Job', 'Ability']
 indices = ['Brawler1', 'Brawler2', 'Brawler3', 'Brawler4']
 selected_brawlers = df.loc[indices, cols]
 print(selected_brawlers)
+
+rare_brawlers = df[df['Rarity'] == 'Rare']
+print(rare_brawlers)
