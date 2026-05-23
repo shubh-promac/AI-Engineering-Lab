@@ -1,4 +1,3 @@
-import numpy as np
 from numpy import random
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -15,7 +14,7 @@ simulations = 1000  # Number of hours to simulate
 
 # 2. Generate Poisson data
 # Each number represents the count of customers in one specific hour
-data = np.random.poisson(lam=avg_rate, size=simulations)
+data = random.poisson(lam=avg_rate, size=simulations)
 
 # 3. Visualize using Seaborn
 plt.figure(figsize=(10, 6))

@@ -1,4 +1,3 @@
-import numpy as np
 from numpy import random
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -37,7 +36,7 @@ plt.title("Pareto Distribution with a=1.16 (80/20 Rule)")
 plt.show()
 
 # Modern Way for pareto distribution
-rng = np.random.default_rng(seed = 123)
+rng = random.default_rng(seed = 123)
 data = rng.pareto(a=1.16, size=(1000))
 sns.displot(data, kind="kde")
 plt.title("Pareto Distribution with a=1.16 (80/20 Rule)")

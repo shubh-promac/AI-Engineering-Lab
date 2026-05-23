@@ -10,7 +10,7 @@ The Zipf distribution in NumPy generates integers where small numbers are very c
 '''
 
 # Create a generator (Modern NumPy way)
-rng = np.random.default_rng()
+rng = random.default_rng()
 
 # Generate 10 samples with distribution parameter a=2.0
 samples = rng.zipf(a=2.0, size=10)
@@ -24,7 +24,8 @@ print(samples)
 word_counts = rng.zipf(a=2.0, size=100000)
 
 # See how many times the "most popular" word (1) appeared vs others
-unique, counts = np.unique(word_counts, return_counts=True)
+unique, counts = np.unique(word_counts, return_counts=True) # Count occurrences of each unique word rank
+# np.unique function in NumPy finds and returns the sorted, unique elements of an input array
 zipf_dict = dict(zip(unique, counts))
 
 print(f"Occurrences of word '1': {zipf_dict.get(1)}")

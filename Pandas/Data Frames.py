@@ -28,7 +28,7 @@ print(df.loc[df['Name'].isin(['Stu', 'Colt'])])
 # Prefer this (only ignores the missing attribute error):
 print(df.loc[df.Name.isin(['Stu', 'Colt'])])  # type: ignore[attr-defined]
 
-# print(df.describe())  # Get summary statistics of the DataFrame
+# print(df.describe())  # Quick Statistical Summary # Get summary statistics of the DataFrame
 # print(df.info())  # Get information about the DataFrame, including data types and non-null
 
 # Adding 2 dataframes together
