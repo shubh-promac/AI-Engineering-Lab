@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("Pandas/pokemondata.csv")
+df = pd.read_csv("Pandas/Datasets/pokemondata.csv")
 
 # Whole dataframe
 

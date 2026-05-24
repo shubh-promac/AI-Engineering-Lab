@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("Pandas/pokemondata.csv")
+df = pd.read_csv("Pandas/Datasets/pokemondata.csv")
 
 # Cleaning the data by removing rows with missing values
 #df.dropna(subset=["Type2"], inplace=True) # inplace=True means that the changes will be made to the original dataframe

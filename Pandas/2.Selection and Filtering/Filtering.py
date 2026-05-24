@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("Pandas/pokemondata.csv")
+df = pd.read_csv("Pandas/Datasets/pokemondata.csv")
 
 M_pokemon = df.loc[df["Name"].str[0] == "M"] # Finding All pokemon whose name starts with M
 # can also use M_pokemon = df[df["Name"].str.startswith("M")]

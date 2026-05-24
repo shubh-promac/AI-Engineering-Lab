@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_csv("Pandas/pokemondata.csv", index_col='Name')
+df = pd.read_csv("Pandas/Datasets/pokemondata.csv", index_col='Name')
 # index_col would set the index as the names of pokemon the rows
 
 # SELECTION BY COLUMN

@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('Pandas/pokemondata.csv')
+df = pd.read_csv('Pandas/Datasets/pokemondata.csv')
 
 print(df["Type1"].value_counts())
 
