@@ -27,6 +27,13 @@ print(df.groupby(['Type1', 'Type2']).apply(lambda df: df.loc[df.Weight.idxmax()]
 print(df.groupby(['Type1']).Height.agg([len, min, max]))
 # calculates three different statistics for the Height column across every unique category in Type1
 
+# what are the type1 of all pokemon how many of each type in the data set
+# Creates a series whose index is the Type1 and whose values count how many of each type there are
+reviews_written = df.groupby('Type1').size()
+print(reviews_written)
+# OR
+reviews_written = df.groupby('Type1').Type1.count()
+print(reviews_written)
 
 # counts the total number of items (names) for every unique combination of Type1 and Type2
 m = df.groupby(['Type1', 'Type2']).Name.agg([len]) #old way
@@ -38,31 +45,13 @@ uniquepokemon = df.groupby(['Type1', 'Type2']).Name.agg(Total_Count='count') # m
 print(uniquepokemon)
 
 # Sorting
-import pandas as pd
-
-# 1. Create a raw dataset from scratch
-data = {
-    'country': ['US', 'US', 'Argentina', 'Greece', 'Argentina', 'US'],
-    'province': ['California', 'Texas', 'Mendoza', 'Sterea Ellada', 'Mendoza', 'California'],
-    'winery': ['Winery A', 'Winery B', 'Winery C', 'Winery D', 'Winery E', 'Winery F']
-}
-df = pd.DataFrame(data)
-print("--- 1. Raw DataFrame ---")
-print(df, "\n")
-
-# 2. Group by multiple columns to automatically create a MultiIndex
-# This counts the number of wineries per country and province
-countries_reviewed = df.groupby(['country', 'province']).size().to_frame(name='len')
-print("--- 2. DataFrame with a MultiIndex (Notice the nested row labels) ---")
-print(countries_reviewed, "\n")
-
-# 3. Flatten the MultiIndex into regular columns
-countries_reviewed = countries_reviewed.reset_index()
-print("--- 3. Flattened DataFrame (After reset_index) ---")
-print(countries_reviewed, "\n")
-
-# 4. Sort the DataFrame by the 'len' column in ascending order
-countries_reviewed_sorted = countries_reviewed.sort_values(by='len')
-print("--- 4. Final Sorted DataFrame ---")
-print(countries_reviewed_sorted)
+mi = uniquepokemon.index
+print(type(mi))
+uniquepokemon.reset_index()
+# To see the sorted output, assign to a variable or use inplace=True
+sorted_uniquepokemon = uniquepokemon.sort_values(by='Total_Count', ascending=False) # type: ignore
+uniquepokemon.sort_index()
+print(sorted_uniquepokemon)
+uniquepokemon.sort_values(by=['Type1','Total_Count']) # type: ignore #forms the data set into alphabetical order 
+print(uniquepokemon)
 

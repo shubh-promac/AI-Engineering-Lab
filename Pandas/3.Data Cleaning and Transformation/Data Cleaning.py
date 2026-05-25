@@ -8,8 +8,9 @@ df = pd.read_csv("Pandas/Datasets/pokemondata.csv")
 #print(df.to_string())
 
 # Cleaning the data by filling missing values with a specific value
-#df.fillna('nothing', inplace=True) # inplace=True means that the changes will be made to the original dataframe
+#df.fillna('nothing here', inplace=True) # inplace=True means that the changes will be made to the original dataframe
 #df = df.fillna({"Type2": "None"}) # specifing the category
+#df = df.Type2.fillna("None") #could also use this
 print(df.to_string())
 
 # Dropping a column
@@ -31,7 +32,7 @@ df["Mythical"] = df["Mythical"].astype(bool)
 df.drop_duplicates(inplace=True) # inplace=True means that the changes will be made to the original dataframe
 print(df.to_string())
 
-df = pd.read_csv('Pandas/healthdata.csv')
+df = pd.read_csv('Pandas/Datasets/healthdata.csv')
 df['Date'] = pd.to_datetime(df['Date'], format='mixed')
 print(df.to_string())
 df.dropna(subset=['Date'], inplace = True)
@@ -43,3 +44,6 @@ df.loc[7, 'Duration'] = 45
 print(df.loc[7])
 
 print(df.duplicated()) # To discover duplicates, we can use the duplicated() method.
+
+print(df.isnull())  # Check for null values in the DataFrame
+print(df.notnull())  # Check for non-null values in the DataFrame
