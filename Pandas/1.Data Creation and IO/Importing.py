@@ -7,5 +7,5 @@ print(df.loc[67])
 
 print(df.to_string())
 
-df = pd.read_json('Pandas/Datasets/pokemondata.csv')
+df = pd.read_json('Pandas/Datasets/pokemondata.json')
 print(df)
