@@ -33,3 +33,17 @@ inner_joined_df = left.join(right, lsuffix='_CAN', rsuffix='_UK', how='inner')
 # Outer join
 # An outer join (or full outer join) combines two tables by keeping absolutely everything from both datasets.
 outer_joined_df = left.join(right, lsuffix='_CAN', rsuffix='_UK', how='outer')
+
+# Merging
+# It can only join 2 datasets
+
+# DataFrames indexed by 'ID'
+df1 = pd.DataFrame({'Name': ['Alice', 'Bob']}, index=[1, 2])
+df2 = pd.DataFrame({'Salary': [50000, 60000]}, index=[2, 3])
+
+# Using df.join() - clean and concise
+result_join = df1.join(df2, how='inner')
+
+# Using pd.merge() - requires explicit index flags
+result_merge = pd.merge(df1, df2, left_index=True, right_index=True, how='inner')
+
