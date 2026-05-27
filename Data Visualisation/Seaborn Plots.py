@@ -16,9 +16,9 @@ data = pd.DataFrame({
 
 # Add manual outliers to Blood Pressure for the boxplot example
 data.loc[:5, 'Blood_Pressure'] = [190, 195, 200, 60, 55, 50] # changes the first 6 values to the following in the Blood_Pressure column
-plt.figure(figsize=(10, 5)) # Determines the size of the figure
 # Histogram
 # Histogram with a Kernel Density Estimate (KDE) line overlaid
+plt.figure(figsize=(10, 5)) # Determines the size of the figure
 sns.histplot(data=data, x='Age', kde=True, color='skyblue')
 plt.title('Data Distribution & Spread (Age)')
 plt.xlabel('Age')
@@ -26,25 +26,42 @@ plt.ylabel('Count / Density')
 plt.show()
 
 # Kernel Density Estimate Line
-sns.kdeplot(data=data, x='Age', color='skyblue')
+sns.kdeplot(data=data, x='Age', color='skyblue', fill = True) # 'fill'(previously called shade) colors the area below the curve
+plt.title('Kernel Density Estimate line')
 plt.show()
 
+# 2D Kernel Density Estimate Line
+iris_data = sns.load_dataset("iris")
+sns.jointplot(data, x='Age', y='Blood_Pressure', kind="kde", cmap = 'viridis')
+# It gives you three charts at once (the 2D map in the middle plus the 1D charts on the sides) so you can see everything in one click.
+# good for analysing data
+plt.show()
 
+# Same but cleaner, removes the 1D charts
+# good for presentation or reports
+sns.kdeplot(
+    data=iris_data, 
+    x="petal_length", 
+    y="sepal_width", 
+    hue="species",   # Splits data by category
+    fill=True, 
+    alpha=0.5        # Makes the overlapping shapes transparent
+)
+# It gives you just the clean 2D map, which is much easier to resize, move around, or fit into a slide layout next to other charts.
+plt.show()
 
-plt.figure(figsize=(10, 4))
 # Box Plot
 # Boxplot displays median, quartiles, and whiskers. Dots represent outliers.
 # We have already set outliers manually
+plt.figure(figsize=(10, 4))
 sns.boxplot(data=data, x='Blood_Pressure', color='lightgreen')
 plt.title('Outliers & Ranges (Blood Pressure)')
 plt.xlabel('Blood Pressure (mmHg)')
 plt.show()
 
-
-
-plt.figure(figsize=(10, 6))
 # Scatter Plot
 # Scatterplots map individual data points on X and Y grids to show correlation.
+plt.figure(figsize=(10, 6))
 sns.scatterplot(data=data, x='Age', y='Blood_Pressure', color='coral', alpha=0.8)
 plt.title('Relationships & Correlations (Age vs. Blood Pressure)')
 plt.xlabel('Age')
@@ -52,10 +69,9 @@ plt.ylabel('Blood Pressure')
 plt.show()
 print(data.corr)
 
-
-plt.figure(figsize=(12, 5))
 # Line Plot
 # Line plots connect sequential data points, perfect for time-series analysis.
+plt.figure(figsize=(12, 5))
 sns.lineplot(data=data, x='Date', y='Stock_Price', color='purple', linewidth=2)
 plt.title('Trends Over Time (Stock Price Progression)')
 plt.xlabel('Date')
@@ -105,19 +121,37 @@ sns.relplot(data=df, x='X_Num', y = 'Y_Num', kind='scatter', hue='Group')
 plt.title('Hue Grouping')
 plt.show()
 
-# Set the width and height of the figure
-plt.figure(figsize=(14,7))
 
-# Add title
-plt.title("Average Arrival Delay for Each Airline, by Month")
-
+# Heatmap
 # Heatmap showing average arrival delay for each airline by month
+plt.figure(figsize=(14,7))
+plt.title("Average Arrival Delay for Each Airline, by Month")
 sns.heatmap(data=df.select_dtypes(include=np.number), annot=True)
-
-# Add label for horizontal axis
 plt.xlabel("Airline")
 plt.show()
 
+# Regression Plot
 # Plotting a Line of Best Line(Regression Line)
-sns.regplot(df, x = 'X_Num', y = 'Y_Num')
+# It also shades the confidence interval
+# What the Confidence Interval is
+'''Think of the 95% confidence interval as a "safety zone" for the line of best fit.
+If you collected a brand new batch of data from the exact same source tomorrow, the new line of best fit would almost certainly change slightly.
+The shaded band shows you the area where that new line is 95% likely to fall.
+By default, sns.regplot() displays a 95% confidence interval.'''
+# You can manually set the confidence interval
+# by using the ci arguement 'ci = 99' you can set the confidence interval to 99%
+# or you can completely remove it by using ci = None
+sns.regplot(df, x = 'X_Num', y = 'Y_Num', ci = None)
+plt.show()
+
+# Linear Model Plot
+# sns.lmplot() is a figure-level function in Seaborn used to plot lines of best fit across different categories of your data.
+# You can automatically draw separate lines of best fit for different categories on the exact same graph.
+sns.lmplot(df, x = 'X_Num', y = 'Y_Num', ci = None)
+plt.show()
+
+sns.lmplot(data=df, x="X_Num", y="Y_Num", col="Group")
+# col splits the A and B graphs seperately vertically, one graph only having A values and one graph with only having B values
+sns.lmplot(data=df, x="X_Num", y="Y_Num", row="Group")
+# row splits the A and B graphs seperately horizontal, one graph only having A values and one graph with only B values
 plt.show()
