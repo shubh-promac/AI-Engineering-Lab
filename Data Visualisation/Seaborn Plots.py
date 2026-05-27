@@ -101,12 +101,23 @@ plt.show()
 # Hue Grouping
 # Compare age distributions between genders on the exact same axis
 # Keeps everything on a single chart but colors the data points differently based on their category.
-sns.displot(data=df, x='Age', kind='hist', hue='Group')
+sns.relplot(data=df, x='X_Num', y = 'Y_Num', kind='scatter', hue='Group')
+plt.title('Hue Grouping')
 plt.show()
 
-# Faceted Grids
-#What it does:
-# Automatically slices your data and builds a clean grid of completely separate subplots (also known as "small multiples").
+# Set the width and height of the figure
+plt.figure(figsize=(14,7))
 
-sns.displot(data=df, x='Age', kind='hist', col='Region', row='Year')
+# Add title
+plt.title("Average Arrival Delay for Each Airline, by Month")
+
+# Heatmap showing average arrival delay for each airline by month
+sns.heatmap(data=df.select_dtypes(include=np.number), annot=True)
+
+# Add label for horizontal axis
+plt.xlabel("Airline")
+plt.show()
+
+# Plotting a Line of Best Line(Regression Line)
+sns.regplot(df, x = 'X_Num', y = 'Y_Num')
 plt.show()
