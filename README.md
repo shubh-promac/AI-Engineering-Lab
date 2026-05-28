@@ -3,9 +3,9 @@ This repository is a hands-on guide for learning AI, Data Science, and Machine L
 To get started, clone the repo and explore the folders by topic; contributions and suggestions are welcome via pull requests or issues.
 
 ## 🗺️ Learning Roadmap
-- [x] **Phase 1: Data Foundations** (NumPy, Statistics, Math) - In Progress
-- [x] **Phase 2: Data Manipulation** (Pandas, Data Cleaning) - In Progress
-- [x] **Phase 3: Data Visualization** (Matplotlib, Seaborn) - In Progress
+- [x] **Phase 1: Data Foundations** (NumPy, Statistics, Math) - Completed
+- [x] **Phase 2: Data Manipulation** (Pandas, Data Cleaning) - Almost there
+- [x] **Phase 3: Data Visualization** (Matplotlib, Seaborn) - Completed
 - [ ] **Phase 4: Machine Learning** (Scikit-Learn)
 - [ ] **Phase 5: Deep Learning & AI** (Neural Networks, TensorFlow/PyTorch)
 
