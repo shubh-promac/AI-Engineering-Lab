@@ -42,41 +42,60 @@ plt.plot(x,y)
 plt.show()
 
 
-# Plotting 6 graphs in one figure:
-x = np.array([0, 1, 2, 3])
-y = np.array([3, 8, 1, 10])
+# Plotting 6 graphs in one figure with plt.subplot:
+x1 = np.array([0, 1, 2, 3])
+y1 = np.array([3, 8, 1, 10])
 
 plt.subplot(2, 3, 1)
-plt.plot(x,y)
+plt.plot(x1,y1)
 
-x = np.array([0, 1, 2, 3])
-y = np.array([10, 20, 30, 40])
+x2 = np.array([0, 1, 2, 3])
+y2 = np.array([10, 20, 30, 40])
 
 plt.subplot(2, 3, 2)
-plt.plot(x,y)
+plt.plot(x2,y2)
 
-x = np.array([0, 1, 2, 3])
-y = np.array([3, 8, 1, 10])
+x3 = np.array([0, 1, 2, 3])
+y3 = np.array([3, 8, 1, 10])
 
 plt.subplot(2, 3, 3)
-plt.plot(x,y)
+plt.plot(x3,y3)
 
-x = np.array([0, 1, 2, 3])
-y = np.array([10, 20, 30, 40])
+x4 = np.array([0, 1, 2, 3])
+y4 = np.array([10, 20, 30, 40])
 
 plt.subplot(2, 3, 4)
-plt.plot(x,y)
+plt.plot(x4,y4)
 
-x = np.array([0, 1, 2, 3])
-y = np.array([3, 8, 1, 10])
+x5 = np.array([0, 1, 2, 3])
+y5 = np.array([3, 8, 1, 10])
 
 plt.subplot(2, 3, 5)
-plt.plot(x,y)
+plt.plot(x5,y5)
 
-x = np.array([0, 1, 2, 3])
-y = np.array([10, 20, 30, 40])
+x6 = np.array([0, 1, 2, 3])
+y6 = np.array([10, 20, 30, 40])
 
 plt.subplot(2, 3, 6)
-plt.plot(x,y)
+plt.plot(x6,y6)
 
+plt.show()
+
+# This process is really slow
+# There is another method we could use called plt.subplots
+
+fig, axes = plt.subplots(nrows=2, ncols=3) # specifiying number of 
+
+axes[0, 0].plot(x1, y1)
+axes[0, 0].set_title("Plot 1") # you can also set the title for each singualr graph
+axes[0, 1].plot(x2, y2)
+axes[0, 1].set_title("Plot 2")
+axes[0, 2].plot(x3, y3)
+axes[0, 2].set_title("Plot 3")
+axes[1, 0].plot(x4, y4)
+axes[1, 0].set_title("Plot 4")
+axes[1, 1].plot(x5, y5)
+axes[1, 1].set_title("Plot 5")
+axes[1, 2].plot(x6, y6)
+axes[1, 2].set_title("Plot 6")
 plt.show()
