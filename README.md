@@ -1,12 +1,11 @@
 # 🚀 AI Engineering Lab
-This repository is a hands-on guide for learning AI, Data Science, and Machine Learning from basics to advanced topics
-To get started, clone the repo and explore the folders by topic; contributions and suggestions are welcome via pull requests or issues.
+This repository is a hands-on guide for learning AI, Data Science, and Machine Learning from basics to advanced topics. To get started, clone the repo and explore the folders by topic; contributions and suggestions are welcome via pull requests or issues.
 
 ## 🗺️ Learning Roadmap
-- [x] **Phase 1: Data Foundations** (NumPy, Statistics, Math) - Completed
-- [x] **Phase 2: Data Manipulation** (Pandas, Data Cleaning) - Almost there
-- [x] **Phase 3: Data Visualization** (Matplotlib, Seaborn) - Completed
-- [ ] **Phase 4: Machine Learning** (Scikit-Learn)
+- [x] **Phase 1: Data Foundations** (NumPy, Statistics, Math) - Completed 🎉
+- [x] **Phase 2: Data Manipulation** (Pandas, Data Cleaning) - Completed 🎉🎉
+- [x] **Phase 3: Data Visualization** (Matplotlib, Seaborn) - Completed 🎉🎉🎉
+- [x] **Phase 4: Machine Learning** (Scikit-Learn) - In progress
 - [ ] **Phase 5: Deep Learning & AI** (Neural Networks, TensorFlow/PyTorch)
 
 ---
@@ -28,15 +27,23 @@ To get started, clone the repo and explore the folders by topic; contributions a
 * **Grid & Layouts:** Advanced subplot management and grid configurations.
 * **Seaborn Integration:** Statistical data visualization techniques.
 
-### 🐼 03. Pandas
-*Working with real-world data using DataFrames and Series.*
+### 🐼 03. Pandas & Data Preprocessing
+*Working with real-world data using DataFrames, Series, and data cleaning pipelines.*
 * **Core Concepts:** Series and DataFrame creation, manipulation, and selection techniques.
 * **Data Formats:** Working with CSV and JSON data imports.
 * **Pokémon Dataset:** Real-world CSV and JSON data analysis examples.
+* **Data Transformation:** Core modules focusing on missing value imputation, text/renaming mappings, date parsing, character encodings, and handling inconsistent data entry.
+* **Advanced Scaling:** Implementation of MinMax Scaling and non-linear Box-Cox transformations to normalize skewed data arrays.
+
+### 🤖 04. Machine Learning (Scikit-Learn)
+*Predictive modeling, model evaluation, and structured machine learning architecture.*
+* **Supervised Classifiers:** Baseline implementations of Decision Trees and Random Forest ensemble models.
+* **Model Validation:** Methods for handling underfitting vs. overfitting and splitting feature matrices into clean training and testing sets.
+* **Encapsulation Pipelines:** Combining preprocessing transformers and estimators into unified Scikit-Learn Pipelines to eliminate data leakage.
 
 ---
 
 ## 🛠️ Tools Used
 * **Languages:** Python
-* **Libraries:** NumPy, Matplotlib, Seaborn, Pandas
-* **Environment:** VS Code
+* **Libraries:** NumPy, Matplotlib, Seaborn, Pandas, Scikit-Learn, SciPy, Mlxtend
+* **Environment:** VS Code, Git/GitHub, Linux Environment
