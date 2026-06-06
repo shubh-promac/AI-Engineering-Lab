@@ -19,7 +19,7 @@ This repository is a hands-on guide for learning AI, Data Science, and Machine L
 * **Universal Functions (Ufuncs):** GCD, LCM, Trigonometric, Hyperbolic, Logarithmic functions, Rounding, Products, Summations, and Set Operations.
 * **Distributions:** Binomial, Chi Square, Exponential, Logistical, Multinomial, Normal, Pareto, Poisson, Rayleigh, Uniform, and Zipf distributions.
 * **Analysis Examples:** Health_Tracker_Analysis.py demonstrating real-world data generation and outlier detection.
-* **📌 NumPy Mastery Project:** [NumPy Health Tracker](https://github.com/shubh-promac/NumPy-Health-Tracker) - Comprehensive project showcasing complete NumPy knowledge and applications.
+* **[📌 NumPy Mastery Project](https://github.com/shubh-promac/NumPy-Health-Tracker):** Comprehensive project showcasing complete NumPy knowledge and applications.
 
 ### 📊 02. Visualization
 *Hands-on projects mastering data storytelling and visualization techniques.*
