@@ -35,9 +35,10 @@ This repository is a hands-on guide for learning AI, Data Science, and Machine L
 * **Data Transformation:** Core modules focusing on missing value imputation, text/renaming mappings, date parsing, character encodings, and handling inconsistent data entry.
 * **Advanced Scaling:** Implementation of MinMax Scaling and non-linear Box-Cox transformations to normalize skewed data arrays.
 
-### 🤖 04. Machine Learning (Scikit-Learn)
+### 🤖 04. Machine Learning & Ensemble Methods (Scikit-Learn)
 *Predictive modeling, model evaluation, and structured machine learning architecture.*
-* **Supervised Classifiers:** Baseline implementations of Decision Trees and Random Forest ensemble models.
+* **Supervised Classifiers:** Foundational implementations of **Decision Trees** utilizing root nodes, internal feature splits, and leaf nodes to classify data based on entropy or Gini impurity.
+* **Ensemble Methods:** Advanced applications of **Random Forests** utilizing bootstrap aggregating (bagging) to combine multiple distinct decision trees, reducing model variance and avoiding overfitting.
 * **Model Validation:** Methods for handling underfitting vs. overfitting and splitting feature matrices into clean training and testing sets.
 * **Encapsulation Pipelines:** Combining preprocessing transformers and estimators into unified Scikit-Learn Pipelines to eliminate data leakage.
 
