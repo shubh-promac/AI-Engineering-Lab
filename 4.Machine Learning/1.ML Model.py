@@ -1,5 +1,7 @@
 import pandas as pd
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.metrics import mean_absolute_error
+from sklearn.model_selection import train_test_split
 
 melbourne_data = pd.read_csv('4.Machine Learning/Datasets/melb_data.csv') 
 print(melbourne_data.columns)
@@ -36,7 +38,6 @@ print(melbourne_model.predict(X.head())) # predicting for only the first five
 
 # EVALUATE MODEL
 # What is Model Validation
-from sklearn.metrics import mean_absolute_error
 
 # error=actual−predicted
 prediction = melbourne_model.predict(X)
@@ -50,7 +51,6 @@ mean_absolute_error(y, prediction)
 # The scikit-learn library has a function train_test_split to break up the data into two pieces.
 # We'll use some of that data as training data to fit the model, and we'll use the other data as validation data to calculate mean_absolute_error
 
-from sklearn.model_selection import train_test_split
 
 train_X, val_X, train_y, val_y = train_test_split(X, y, random_state = 1)
 # The Split: 75% becomes the "Study Guide" (train_X and train_y).
