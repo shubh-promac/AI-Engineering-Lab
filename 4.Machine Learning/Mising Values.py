@@ -3,7 +3,8 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
-# from sklearn.impute import IterativeImputer
+from sklearn.experimental import enable_iterative_imputer 
+from sklearn.impute import IterativeImputer
 '''
 There are three main approaches to handling missing values in machine learning:
 1. Drop the columns with missing values
@@ -86,3 +87,37 @@ imputed_X_valid_plus = pd.DataFrame(indicator_imputer.transform(X_valid), index=
 
 print("MAE from Approach 3 (An Extension to Imputation):")
 print(get_mae(imputed_X_plus, imputed_X_valid_plus, y_train, y_valid))
+
+
+# Approach 4: Iterative Imputation (Smart ML Guessing)
+'''
+🎨 The Analogy: The Detective Group Project
+Imagine three students work together on a project, but each accidentally drops one piece of their data:
+-Student A loses their Salary data.
+-Student B loses their House Size data.
+-Student C loses their Zip Code data.
+
+How a SimpleImputer solves it:
+It looks at Student A, shrugs, and gives them the exact average salary of the entire country. It doesn't look at their big house or expensive zip code. It's a lazy guess.
+How an IterativeImputer solves it:
+It builds a mini AI model for each person using the remaining clues:
+Round 1: It looks at Student A's House Size and Zip Code, realizes they live in a luxury neighborhood, and predicts a high Salary for them.
+Round 2: Now that Salary is filled, it uses that new salary data to go back and make an even more accurate guess for Student B's missing House Size.
+Round 3: It repeats this cycle (iterates) several times until the guesses stabilize and stop changing.
+'''
+
+# Create the smart imputer that models missing features based on others
+# max_iter=10 means it will pass through the data 10 times to refine its guesses
+smart_imputer = IterativeImputer(max_iter=10, random_state=0)
+
+# Fit the machine learning model on training data and transform both sets
+imputed_X_iter = pd.DataFrame(smart_imputer.fit_transform(X_train), index=X_train.index)
+imputed_X_valid_iter = pd.DataFrame(smart_imputer.transform(X_valid), index=X_valid.index) # pyright: ignore[reportArgumentType]
+
+# Copy the column names back (IterativeImputer removes them just like SimpleImputer)
+imputed_X_iter.columns = X_train.columns
+imputed_X_valid_iter.columns = X_valid.columns
+
+# Print the final error score to compare with your other approaches
+print("\nMAE from Approach 4 (Iterative Imputation):")
+print(get_mae(imputed_X_iter, imputed_X_valid_iter, y_train, y_valid))
