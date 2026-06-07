@@ -3,7 +3,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
-from sklearn.experimental import enable_iterative_imputer 
+from sklearn.experimental import enable_iterative_imputer # you have enable this first or it won't work
 from sklearn.impute import IterativeImputer
 '''
 There are three main approaches to handling missing values in machine learning:
@@ -53,9 +53,20 @@ print(get_mae(reduced_X_train, reduced_X_valid, y_train, y_valid))
 # Approach 2: Imputation
 # we can change strategy to 'median', 'most_frequent' or 'constant' then put fill_value= anything you would like to replcae it with
 my_imputer = SimpleImputer(strategy='mean') # By default, it finds missing values (NaN) and replaces them witthe mean (average) value of that specific column.
-imputed_X_train = pd.DataFrame(my_imputer.fit_transform(X_train), index=X_train.index) 
+imputed_X_train = pd.DataFrame(my_imputer.fit_transform(X_train), index=X_train.index)
+'''
+fit is when the computer studies the data to figure out a rule. It does not change anything; it just takes notes.
+transform is when the computer actually edits the data using the rule it just learned.
+This is just a shortcut command. Instead of typing two separate lines of code to learn and then edit, you use fit_transform to do both steps in one quick action.
+'''
 # The imputer calcutes the average values using the training data (X_train) and immediately fills its missing spots.
 imputed_X_valid = pd.DataFrame(my_imputer.transform(X_valid), index=X_valid.index) # pyright: ignore[reportArgumentType]
+'''
+On the Validation Data (X_valid):
+You use transform only. You do not want the computer to recalculate a new average based on these secret validation houses.
+You want it to strictly use the 150 average it learned from the training data. If you let the computer "learn" (fit) from the validation data, it is cheating.
+In data science, this cheating is called Data Leakage, and it will break your model's accuracy.
+'''
 # The imputer uses those exact same calculated averages to fill the missing spots in the validation data (X_valid).
 
 # Imputation removed column names; put them back
@@ -106,18 +117,38 @@ Round 2: Now that Salary is filled, it uses that new salary data to go back and 
 Round 3: It repeats this cycle (iterates) several times until the guesses stabilize and stop changing.
 '''
 
-# Create the smart imputer that models missing features based on others
-# max_iter=10 means it will pass through the data 10 times to refine its guesses
-smart_imputer = IterativeImputer(max_iter=10, random_state=0)
+# The smart imputer that models missing features based on others
+# max_iter=15 means it will pass through the data 15 times to refine its guesses and stabalize
+smart_imputer = IterativeImputer(estimator=RandomForestRegressor(n_estimators=50, random_state=0, n_jobs=-1, max_depth=5), max_iter=15, random_state=0)
+# we are training a completely separate, mini Random Forest model whose only job is to guess the missing values.
 
 # Fit the machine learning model on training data and transform both sets
-imputed_X_iter = pd.DataFrame(smart_imputer.fit_transform(X_train), index=X_train.index)
-imputed_X_valid_iter = pd.DataFrame(smart_imputer.transform(X_valid), index=X_valid.index) # pyright: ignore[reportArgumentType]
+imputed_X_iter = pd.DataFrame(smart_imputer.fit_transform(X_train), index=X_train.index) # studying
+imputed_X_valid_iter = pd.DataFrame(smart_imputer.transform(X_valid), index=X_valid.index) # pyright: ignore[reportArgumentType] # taking the test
+
+'''
+
+'''
 
 # Copy the column names back (IterativeImputer removes them just like SimpleImputer)
 imputed_X_iter.columns = X_train.columns
 imputed_X_valid_iter.columns = X_valid.columns
 
 # Print the final error score to compare with your other approaches
-print("\nMAE from Approach 4 (Iterative Imputation):")
+print("MAE from Approach 4 (Iterative Imputation):")
 print(get_mae(imputed_X_iter, imputed_X_valid_iter, y_train, y_valid))
+
+'''
+Iterative Imputer(The Overthinker):
+It tries to look for secret clues in other columns to calculate a precise guess.
+Because the data missingness was just random chaos, the imputer halluncinated connections that didn't exist.
+It confidently wrote down highly specific, incorrect numbers.
+
+The smart imputer assumes a logical pattern like: "Higher price + more rooms = huge house."
+But real estate has too many weird exceptions. A tiny, historic cottage in a premium neighborhood can cost three times more than a massive modern house out in the suburbs.
+The imputer's mathematical model couldn't handle these real-world quirks, so its specific guesses actually polluted the dataset with bad info.
+
+Even with a perfectly tuned machine learning brain, the IterativeImputer still couldn't beat a simple average.
+This is the ultimate proof that the missing data in this specific Melbourne dataset doesn't have a hidden, complex pattern.
+A simple average is all it needs.
+'''
